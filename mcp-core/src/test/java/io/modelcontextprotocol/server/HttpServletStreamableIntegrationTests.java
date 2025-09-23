@@ -13,6 +13,7 @@ import io.modelcontextprotocol.client.transport.HttpClientStreamableHttpTranspor
 import io.modelcontextprotocol.common.McpTransportContext;
 import io.modelcontextprotocol.server.McpServer.AsyncSpecification;
 import io.modelcontextprotocol.server.McpServer.SyncSpecification;
+import io.modelcontextprotocol.server.servlet.HttpServletRequestMcpTransportContextExtractor;
 import io.modelcontextprotocol.server.transport.HttpServletStreamableServerTransportProvider;
 import io.modelcontextprotocol.server.transport.TomcatTestUtil;
 import jakarta.servlet.http.HttpServletRequest;
@@ -96,7 +97,13 @@ class HttpServletStreamableIntegrationTests extends AbstractMcpClientServerInteg
 	protected void prepareClients(int port, String mcpEndpoint) {
 	}
 
-	static McpTransportContextExtractor<HttpServletRequest> TEST_CONTEXT_EXTRACTOR = (r) -> McpTransportContext
-		.create(Map.of("important", "value"));
+	static McpTransportContextExtractor<HttpServletRequest> TEST_CONTEXT_EXTRACTOR = new HttpServletRequestMcpTransportContextExtractor() {
+		@Override
+		protected Map<String, Object> metadata(HttpServletRequest r) {
+			Map<String, Object> m = super.metadata(r);
+			m.putAll(Map.of("important", "value"));
+			return m;
+		}
+	};
 
 }
