@@ -28,7 +28,7 @@ public class HttpServletRequestMcpTransportContextExtractor
 	 * @return Extracts Map for MCP Transport Context
 	 */
 	protected Map<String, Object> metadata(HttpServletRequest request) {
-		Map<String, Object> metadata = new HashMap<>();
+		Map<String, Object> metadata = new HashMap<>(3);
 		metadata.put(io.modelcontextprotocol.spec.HttpHeaders.PROTOCOL_VERSION,
 				Optional.ofNullable(request.getHeader(io.modelcontextprotocol.spec.HttpHeaders.PROTOCOL_VERSION))
 					.orElse(ProtocolVersions.MCP_2025_03_26));
