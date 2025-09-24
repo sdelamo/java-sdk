@@ -9,7 +9,6 @@ import java.io.PrintWriter;
 import java.util.Map;
 
 import io.modelcontextprotocol.json.TypeRef;
-import io.modelcontextprotocol.server.servlet.HttpServletRequestMcpTransportContextExtractor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

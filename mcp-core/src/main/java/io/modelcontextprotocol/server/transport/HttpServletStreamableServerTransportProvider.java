@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantLock;
 
-import io.modelcontextprotocol.server.servlet.HttpServletRequestMcpTransportContextExtractor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
