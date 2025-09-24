@@ -4,6 +4,7 @@
 
 package io.modelcontextprotocol.common;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiFunction;
 
@@ -94,8 +95,12 @@ public class AsyncServerMcpTransportContextIntegrationTests {
 
 	private final McpTransportContextExtractor<HttpServletRequest> serverContextExtractor = new HttpServletRequestMcpTransportContextExtractor() {
 		@Override
-		protected Map<String, Object> metadata(HttpServletRequest r) {
-			Map<String, Object> m = super.metadata(r);
+		public McpTransportContext extract(HttpServletRequest request) {
+			return McpTransportContext.create(metadata(request));
+		}
+
+		private Map<String, Object> metadata(HttpServletRequest r) {
+			Map<String, Object> m = new HashMap<>(McpTransportContext.createMetadata(r::getHeader));
 			var headerValue = r.getHeader(HEADER_NAME);
 			if (headerValue != null) {
 				m.put("server-side-header-value", headerValue);

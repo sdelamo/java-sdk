@@ -5,11 +5,13 @@
 package io.modelcontextprotocol.server;
 
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
 import io.modelcontextprotocol.client.McpClient;
 import io.modelcontextprotocol.client.transport.HttpClientStreamableHttpTransport;
+import io.modelcontextprotocol.common.McpTransportContext;
 import io.modelcontextprotocol.server.McpServer.AsyncSpecification;
 import io.modelcontextprotocol.server.McpServer.SyncSpecification;
 import io.modelcontextprotocol.server.servlet.HttpServletRequestMcpTransportContextExtractor;
@@ -98,8 +100,12 @@ class HttpServletStreamableIntegrationTests extends AbstractMcpClientServerInteg
 
 	static McpTransportContextExtractor<HttpServletRequest> TEST_CONTEXT_EXTRACTOR = new HttpServletRequestMcpTransportContextExtractor() {
 		@Override
-		protected Map<String, Object> metadata(HttpServletRequest r) {
-			Map<String, Object> m = super.metadata(r);
+		public McpTransportContext extract(HttpServletRequest request) {
+			return McpTransportContext.create(metadata(request));
+		}
+
+		private Map<String, Object> metadata(HttpServletRequest r) {
+			Map<String, Object> m = new HashMap<>(McpTransportContext.createMetadata(r::getHeader));
 			m.put("important", "value");
 			return m;
 		}
