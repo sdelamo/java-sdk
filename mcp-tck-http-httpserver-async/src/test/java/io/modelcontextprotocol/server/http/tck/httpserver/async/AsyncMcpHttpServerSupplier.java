@@ -4,7 +4,6 @@ import com.sun.net.httpserver.HttpExchange;
 import io.modelcontextprotocol.server.transport.HttpServerMcpStatelessServerTransport;
 import io.modelcontextprotocol.server.McpHttpServer;
 import io.modelcontextprotocol.server.McpHttpServerSupplier;
-import io.modelcontextprotocol.server.httpserver.HttpExchangeMcpTransportContextExtractor;
 import io.modelcontextprotocol.server.httpserver.McpSimpleHttpServer;
 import io.modelcontextprotocol.common.McpTransportContext;
 import io.modelcontextprotocol.json.McpJsonMapper;
