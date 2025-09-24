@@ -169,7 +169,8 @@ public class HttpServletStatelessServerTransport extends HttpServlet implements 
 
 		private String mcpEndpoint = "/mcp";
 
-		private McpTransportContextExtractor<HttpServletRequest> contextExtractor;
+        private McpTransportContextExtractor<HttpServletRequest> contextExtractor = (
+                serverRequest) -> McpTransportContext.EMPTY;
 
 		private Builder() {
 			// used by a static method
@@ -225,8 +226,7 @@ public class HttpServletStatelessServerTransport extends HttpServlet implements 
 		public HttpServletStatelessServerTransport build() {
 			Assert.notNull(mcpEndpoint, "Message endpoint must be set");
 			return new HttpServletStatelessServerTransport(
-					new HttpServerMcpStatelessServerTransport<>(contextExtractor == null
-							? new HttpServletRequestMcpTransportContextExtractor() : contextExtractor),
+					new HttpServerMcpStatelessServerTransport<>(contextExtractor),
 					jsonMapper == null ? McpJsonMapper.getDefault() : jsonMapper, mcpEndpoint);
 		}
 
