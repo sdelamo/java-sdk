@@ -6,6 +6,8 @@ package io.modelcontextprotocol.server;
 
 import io.modelcontextprotocol.common.McpTransportContext;
 
+import java.util.Optional;
+
 /**
  * The contract for extracting metadata from a generic transport request of type
  * {@link T}.

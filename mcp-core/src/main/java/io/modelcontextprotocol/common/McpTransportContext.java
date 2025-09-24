@@ -4,8 +4,10 @@
 
 package io.modelcontextprotocol.common;
 
+import java.security.Principal;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Context associated with the transport layer. It allows to add transport-level metadata
@@ -42,5 +44,33 @@ public interface McpTransportContext {
 	 * @return the associated value or {@code null} if missing.
 	 */
 	Object get(String key);
+
+	/**
+	 * @return The MCP Protocl Version
+	 */
+	default Optional<String> protocolVersion() {
+		return Optional.empty();
+	}
+
+	/**
+	 * @return The Session ID
+	 */
+	default Optional<String> sessionId() {
+		return Optional.empty();
+	}
+
+	/**
+	 * @return The Last Event ID
+	 */
+	default Optional<String> lastEventId() {
+		return Optional.empty();
+	}
+
+	/**
+	 * @return The Principal. it may represent the authenticated user.
+	 */
+	default Optional<Principal> principal() {
+		return Optional.empty();
+	}
 
 }
