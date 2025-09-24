@@ -169,8 +169,8 @@ public class HttpServletStatelessServerTransport extends HttpServlet implements 
 
 		private String mcpEndpoint = "/mcp";
 
-        private McpTransportContextExtractor<HttpServletRequest> contextExtractor = (
-                serverRequest) -> McpTransportContext.EMPTY;
+		private McpTransportContextExtractor<HttpServletRequest> contextExtractor = (
+				serverRequest) -> McpTransportContext.EMPTY;
 
 		private Builder() {
 			// used by a static method

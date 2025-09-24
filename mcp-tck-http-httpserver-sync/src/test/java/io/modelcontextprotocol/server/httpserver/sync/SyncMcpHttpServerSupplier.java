@@ -25,8 +25,8 @@ public class SyncMcpHttpServerSupplier implements McpHttpServerSupplier {
 	public McpHttpServer get() {
 		try {
 			McpJsonMapper jsonMapper = McpJsonMapper.getDefault();
-			HttpServerMcpStatelessServerTransport<HttpExchange> transport = new HttpServerMcpStatelessServerTransport(
-					new HttpExchangeMcpTransportContextExtractor());
+			HttpServerMcpStatelessServerTransport<HttpExchange> transport = new HttpServerMcpStatelessServerTransport<>(
+					(serverRequest) -> McpTransportContext.EMPTY);
 			McpServer.StatelessSyncSpecification spec = McpServer.sync(transport)
 				.jsonSchemaValidator(JsonSchemaValidator.getDefault())
 				.jsonMapper(jsonMapper)

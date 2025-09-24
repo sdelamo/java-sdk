@@ -768,8 +768,8 @@ public class HttpServletStreamableServerTransportProvider extends HttpServlet
 
 		private boolean disallowDelete = false;
 
-        private McpTransportContextExtractor<HttpServletRequest> contextExtractor = (
-                serverRequest) -> McpTransportContext.EMPTY;
+		private McpTransportContextExtractor<HttpServletRequest> contextExtractor = (
+				serverRequest) -> McpTransportContext.EMPTY;
 
 		private Duration keepAliveInterval;
 
@@ -842,8 +842,7 @@ public class HttpServletStreamableServerTransportProvider extends HttpServlet
 			Assert.notNull(this.mcpEndpoint, "MCP endpoint must be set");
 			return new HttpServletStreamableServerTransportProvider(
 					jsonMapper == null ? McpJsonMapper.getDefault() : jsonMapper, mcpEndpoint, disallowDelete,
-					contextExtractor,
-					keepAliveInterval);
+					contextExtractor, keepAliveInterval);
 		}
 
 	}

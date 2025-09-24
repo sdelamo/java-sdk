@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import reactor.core.publisher.Mono;
 
 import java.util.Map;
-import java.util.function.Function;
 
 import static io.modelcontextprotocol.spec.McpSchema.JSONRPC_VERSION;
 

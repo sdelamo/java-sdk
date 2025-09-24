@@ -503,8 +503,8 @@ public class HttpServletSseServerTransportProvider extends HttpServlet implement
 
 		private String sseEndpoint = DEFAULT_SSE_ENDPOINT;
 
-        private McpTransportContextExtractor<HttpServletRequest> contextExtractor = (
-                serverRequest) -> McpTransportContext.EMPTY;
+		private McpTransportContextExtractor<HttpServletRequest> contextExtractor = (
+				serverRequest) -> McpTransportContext.EMPTY;
 
 		private Duration keepAliveInterval;
 
@@ -594,8 +594,7 @@ public class HttpServletSseServerTransportProvider extends HttpServlet implement
 			}
 			return new HttpServletSseServerTransportProvider(
 					jsonMapper == null ? McpJsonMapper.getDefault() : jsonMapper, baseUrl, messageEndpoint, sseEndpoint,
-					keepAliveInterval,
-					contextExtractor);
+					keepAliveInterval, contextExtractor);
 		}
 
 	}
